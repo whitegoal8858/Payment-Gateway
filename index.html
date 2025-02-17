@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Wallet Interface</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+        background-color: #c7bdbd;
+        display: flex;
+        background-repeat: no-repeat;
+        background-size: cover;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 10px;
+        
+    }
+
+    .container {
+        background: linear-gradient(145deg, #2c3e50, #34495e);
+        width: 100%;
+        max-width: 1200px;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+    .profile {
+        width: 20vw;
+        height: 20vw;
+        max-width: 300px;
+        max-height: 300px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-top: 5px;
+    }
+
+    .profile img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .connect {
+        font-size: 1.5vw;
+        padding: 2vw;
+    }
+
+    h1 {
+        color: white;
+        font-size: 4vw;
+        margin-bottom: 15px;
+        text-align: left;
+        flex: 1;
+    }
+
+    .price-display {
+        display: flex;
+        gap: 2vw;
+        margin-bottom: 20px;
+    }
+
+    .price {
+        color: white;
+        font-size: 3vw;
+        font-weight: bold;
+    }
+
+    .price-secondary {
+        color: #a8b6c5;
+        font-size: 3vw;
+    }
+
+    .progress-bar {
+        background: rgba(255, 255, 255, 0.1);
+        height: 10px;
+        border-radius: 5px;
+        margin: 15px 0;
+        width: 100%;
+    }
+
+    .progress {
+        width: 60%;
+        height: 100%;
+        background: linear-gradient(90deg, #3498db, #2980b9);
+        border-radius: 3px;
+    }
+
+    .connect-buttons {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .connect-btn {
+        padding: 15px 30px;
+        font-size: 1.5vw;
+        border: none;
+        border-radius: 25px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .connect-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .crypto-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .card img {
+        width: 50px;
+        height: 50px;
+        transition: transform 0.3s ease;
+    }
+
+    .crypto-info {
+        text-align: center;
+        color: white;
+    }
+
+    .crypto-info span {
+        display: block;
+        font-size: 14px;
+    }
+
+    .crypto-info .price {
+        font-size: 18px;
+        margin-top: 5px;
+    }
+
+    .bottom-section {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .large-btn {
+        flex: 1;
+        padding: 12px;
+        border: none;
+        border-radius: 25px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .large-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+    @media screen and (max-width: 480px) {
+        .container {
+            width: 95%;
+            padding: 15px;
+        }
+
+        .header {
+            display: grid;
+            grid-template-columns: 1fr;
+            justify-items: center;
+            gap: 20px;
+        }
+
+        .profile {
+            width: 50vw;
+            height: 50vw;
+            max-width: 250px;
+            max-height: 250px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .connect {
+            width: 100%;
+            font-size: 18px;
+            padding: 1vw;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .price-display {
+            gap: 10px;
+        }
+
+        .price {
+            font-size: 18px;
+        }
+
+        .price-secondary {
+            font-size: 18px;
+        }
+
+        .progress-bar {
+            margin: 15px 0;
+        }
+
+        .progress {
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            border-radius: 3px;
+        }
+
+        .connect-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .connect-btn {
+            font-size: 14px;
+            padding: 12px 18px;
+            width: 100%;
+        }
+
+        .crypto-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .card {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .card img {
+            width: 35px;
+            height: 35px;
+        }
+
+        .crypto-info .price {
+            font-size: 16px;
+        }
+
+        .bottom-section {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .large-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 14px;
+        }
+    }
+
+    .modal {
+            display: none; 
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .modal-content button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal-content .close {
+            background: red;
+            color: white;
+        }
+
+        /* Transaction History Popup */
+        /* .history-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .history-modal h3 {
+            margin-top: 0;
+        }
+
+        .history-modal ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .history-modal ul li {
+            background: #f5f5f5;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete-btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .history-modal .close-history {
+            background: red;
+            color: white;
+            width: 100%;
+            margin-top: 10px;
+        } */
+
+        .history-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 420px;
+    text-align: center;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.history-content {
+    max-height: 450px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.history-modal h3 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+/* 🔹 Transaction List Styling */
+.history-modal ul {
+    list-style-type: none;
+    padding: 0;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.history-modal ul li {
+    background: #f8f9fa;
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    text-align: left;
+    word-break: break-word;
+}
+
+/* 🗑️ Delete Button Styling */
+.delete-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px 8px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.delete-btn:hover {
+    background: darkred;
+}
+
+/* 🗑️ Clear All Button */
+.clear-history {
+    width: 100%;
+    padding: 10px;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.clear-history:hover {
+    background: #cc0000;
+}
+
+/* ❌ Close Button */
+.close-history {
+    width: 100%;
+    padding: 10px;
+    background: #444;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.close-history:hover {
+    background: #222;
+}
+
+@media (max-width: 480px) {
+    .history-modal {
+        width: 95%;
+        max-width: 95%;
+    }
+}
+
+
+    </style>
+</head>
+<body background="down.gif" ;style="background-size: 100% 100%;">
+
+     <!-- Loading Screen -->
+  <div id="loading">
+    <img src="logo.png" alt="Loading..." id="loading-img">
+</div>
+
+
+<!-- 🔹 Transaction Popup Modal -->
+<div id="transactionModal" class="modal">
+    <div class="modal-content">
+        <h2>🔗 Send Transaction</h2>
+        <input type="text" id="metaId" placeholder="Enter MetaMask ID">
+        <input type="number" id="amount" placeholder="Enter Amount">
+        <button id="sendTransaction" class="send">Send</button>
+        <button class="close">Close</button>
+    </div>
+</div>
+<!-- 📜 Transaction History Modal -->
+<div id="historyModal" class="history-modal">
+    <ul id="historyList"></ul>
+    <button class="close-history">Close</button>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const transactionModal = document.getElementById("transactionModal");
+        const historyModal = document.getElementById("historyModal");
+        const sendTransactionBtn = document.getElementById("sendTransaction");
+        const showTransactionModalBtn = document.getElementById("showTransactionModal");
+        const showHistoryBtn = document.getElementById("showHistory");
+        const historyList = document.getElementById("historyList");
+    
+        // Ethereum Address Validation Function
+        function isValidEthereumAddress(address) {
+            return /^0x[a-fA-F0-9]{40}$/.test(address);
+        }
+    
+        // Open Transaction Modal
+        showTransactionModalBtn.addEventListener("click", () => {
+            transactionModal.style.display = "flex";
+        });
+    
+        // Close Transaction Modal
+        document.querySelector(".modal .close").addEventListener("click", () => {
+            transactionModal.style.display = "none";
+        });
+    
+        // Open Transaction History Modal
+        showHistoryBtn.addEventListener("click", () => {
+            historyList.innerHTML = ""; // Clear previous list
+            let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+    
+            if (transactions.length === 0) {
+                historyList.innerHTML = "<li>No transactions found.</li>";
+            } else {
+                transactions.forEach((tx, index) => {
+                    let li = document.createElement("li");
+                    li.innerHTML = `🪙 ${tx.amount} ETH to ${tx.metaId} <br> 🕒 ${tx.date} 
+                                    <button class="delete-btn" data-index="${index}">❌</button>`;
+                    historyList.appendChild(li);
+                });
+            }
+    
+            historyModal.style.display = "block"; // Show history popup
+    
+            // Add event listeners for delete buttons
+            document.querySelectorAll(".delete-btn").forEach(button => {
+                button.addEventListener("click", (event) => {
+                    let index = event.target.getAttribute("data-index");
+                    deleteTransaction(index);
+                });
+            });
+        });
+    
+        // Close Transaction History Modal
+        document.querySelector(".close-history").addEventListener("click", () => {
+            historyModal.style.display = "none";
+        });
+    
+        // Handle Send Transaction & Save to Local Storage
+        sendTransactionBtn.addEventListener("click", () => {
+            const metaId = document.getElementById("metaId").value.trim();
+            const amount = document.getElementById("amount").value.trim();
+    
+            if (!metaId || !amount) {
+                alert("⚠️ Please enter both MetaMask ID and Amount.");
+                return;
+            }
+    
+            // Validate Ethereum Address
+            if (!isValidEthereumAddress(metaId)) {
+                alert("❌ Invalid MetaMask ID! Please enter a valid Ethereum Address.");
+                return;
+            }
+    
+            const transaction = { metaId, amount, date: new Date().toLocaleString() };
+            let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+            transactions.push(transaction);
+            localStorage.setItem("transactions", JSON.stringify(transactions));
+    
+            alert(`❌ Transaction Failed!\nMetaMask ID: ${metaId}\nAmount: ${amount} \n Reason: Insufficient Amout`);
+            transactionModal.style.display = "none";
+        });
+    
+        // Function to Delete Transaction
+        function deleteTransaction(index) {
+            let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+            transactions.splice(index, 1); // Remove transaction from array
+            localStorage.setItem("transactions", JSON.stringify(transactions)); // Save updated list
+            showHistoryBtn.click(); // Refresh history popup
+        }
+    });
+    </script>
+
+    <div class="container">
+        <div class="header">
+            <div class="profile">
+                <img src="giphy.gif" alt="Profile Picture">
+            </div>
+            <div class="connect">
+                <h1>CONNECT TO METAMASK</h1>
+                <div class="price-display">
+                    <div class="price">$0.00</div>
+                    <div class="price-secondary">$75.00</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+                <div class="connect-buttons">
+                    <button class="large-btn">Connect</button>
+                    <button class="large-btn">Disconnect</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="crypto-cards">
+            <div class="card ethereum">
+                <img src="https://cryptologos.cc/logos/ethereum-eth-logo.svg" alt="Ethereum">
+                <div class="crypto-info">
+                    <span>ETHEREUM</span>
+                    <span class="price">$870.80</span>
+                </div>
+            </div>
+            <div class="card litecoin">
+                <img src="https://cryptologos.cc/logos/litecoin-ltc-logo.svg" alt="Litecoin">
+                <div class="crypto-info">
+                    <span>LITECOIN</span>
+                    <span class="price">$330.80</span>
+                </div>
+            </div>
+            <div class="card bitcoin">
+                <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg" alt="Bitcoin">
+                <div class="crypto-info">
+                    <span>BITCOIN</span>
+                    <span class="price">$42,890.50</span>
+                </div>
+            </div>
+            <div class="card dogecoin">
+                <img src="https://cryptologos.cc/logos/dogecoin-doge-logo.svg" alt="Dogecoin">
+                <div class="crypto-info">
+                    <span>DOGECOIN</span>
+                    <span class="price">$0.080</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-section">
+            <button class="large-btn" id="showTransactionModal">Send/Receive</button>
+            <button class="large-btn" id="showHistory">History</button>
+        </div>
+    </div>
+
+<script>
+const connectButton = document.querySelector('.connect-buttons .large-btn:first-child');
+const disconnectButton = document.querySelector('.connect-buttons .large-btn:last-child');
+const priceElements = document.querySelectorAll('.crypto-info .price');
+const walletAddressDisplay = document.createElement('div');
+walletAddressDisplay.style.color = 'white';
+walletAddressDisplay.style.display = 'flex';
+walletAddressDisplay.style.alignItems = 'center';
+walletAddressDisplay.style.gap = '10px';
+
+const copyIcon = document.createElement('span');
+copyIcon.innerHTML = '📋';
+copyIcon.style.cursor = 'pointer';
+copyIcon.style.fontSize = '1.2em';
+copyIcon.style.display = 'none';
+
+document.querySelector('.connect').appendChild(walletAddressDisplay);
+walletAddressDisplay.appendChild(copyIcon);
+
+// Connect to MetaMask
+async function connectWallet() {
+    if (window.ethereum) {
+        try {
+            const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+            const walletAddress = accounts[0];
+            walletAddressDisplay.textContent = `Connected: ${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}`;
+            walletAddressDisplay.appendChild(copyIcon);
+            copyIcon.style.display = 'inline';
+            connectButton.style.display = 'none';
+            disconnectButton.style.display = 'block';
+
+            copyIcon.onclick = function () {
+                navigator.clipboard.writeText(walletAddress);
+                alert('Wallet Address Copied!');
+            };
+        } catch (error) {
+            console.error('Error connecting to MetaMask:', error);
+        }
+    } else {
+        alert('MetaMask not found. Please install it.');
+    }
+}
+function disconnectWallet() {
+    walletAddressDisplay.textContent = '';
+    copyIcon.style.display = 'none';
+    connectButton.style.display = 'block';
+    disconnectButton.style.display = 'none';
+}
+
+connectButton.addEventListener('click', connectWallet);
+disconnectButton.addEventListener('click', disconnectWallet);
+
+disconnectButton.style.display = 'none';
+// Store previous prices for percentage calculation
+let previousPrices = { ethereum: null, litecoin: null, bitcoin: null, dogecoin: null };
+
+// Function to fetch and update prices
+async function fetchCryptoPrices() {
+    try {
+        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum,bitcoin,litecoin,dogecoin&vs_currencies=usd');
+        const data = await response.json();
+
+        const cryptoNames = ["ethereum", "litecoin", "bitcoin", "dogecoin"];
+
+        cryptoNames.forEach((crypto, index) => {
+            const newPrice = data[crypto].usd;
+            const oldPrice = previousPrices[crypto];
+
+            let percentageChange = 0;
+            let displayText = `$${newPrice} (0%)`;
+            let color = "white"; // Default color
+
+            // Calculate percentage change if old price exists
+            if (oldPrice !== null) {
+                percentageChange = ((newPrice - oldPrice) / oldPrice) * 100;
+
+                // Apply color based on percentage change
+                if (percentageChange > 0.1) {
+                    color = "green"; // Price increased
+                } else if (percentageChange < -0.1) {
+                    color = "red"; // Price decreased
+                }
+
+                // Format display text
+                displayText = `$${newPrice} (${percentageChange.toFixed(2)}%)`;
+            }
+
+            // Update the UI
+            priceElements[index].textContent = displayText;
+            priceElements[index].style.color = color;
+
+            // Store the new price for next comparison
+            previousPrices[crypto] = newPrice;
+        });
+
+    } catch (error) {
+        console.error('Error fetching crypto prices:', error);
+    }
+}
+
+// Fetch initial data
+fetchCryptoPrices();
+// Update prices every 60 seconds
+setInterval(fetchCryptoPrices, 60000);
+
+</script>
+<script src="script.js"></script>
+</body>
+</html>
