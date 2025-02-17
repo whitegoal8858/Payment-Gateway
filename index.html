@@ -715,7 +715,12 @@ async function connectWallet() {
             console.error('Error connecting to MetaMask:', error);
         }
     } else {
-        alert('MetaMask not found. Please install it.');
+        if (confirm('MetaMask not found. Would you like to install it?')){
+            window.location.href = 'https://metamask.io/download/';
+        }
+        else{
+            console.log('MetaMask not found.');
+        }
     }
 }
 function disconnectWallet() {
