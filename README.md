@@ -59,4 +59,4 @@ Contributions are welcome! Feel free to open issues or submit pull requests to i
 
 ## Contact
 
-For any questions or feedback, please contact [Your Name](mailto:sajalsrivastava16@gmail.com).
+For any questions or feedback, please contact [Sajal](mailto:sajalsrivastava16@gmail.com).
